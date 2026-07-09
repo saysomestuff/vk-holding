@@ -5,19 +5,19 @@
 /  https://ipp.farm  301
 /producing-fodder-crops-using-hydroponics/  https://ipp.farm/basics-of-hydroponics-aeroponics-and-aquaponics/  301
 /the-influence-of-different-light-wavelengths-on-plant-growth/  https://ipp.farm/long-read-the-influence-of-different-light-wavelengths-on-plant-growth/  301
-/blackout-periods-for-microgreens/  https://ipp.farm/microgreens/blackout-periods-for-microgreens/  301  # ⚠️  NEW PAGE NEEDED
+/blackout-periods-for-microgreens/  https://ipp.farm/blackout-periods-for-microgreens/  301  # ⚠️  NEW PAGE NEEDED
 /vertical-farming-challenges-and-opportunities/  https://ipp.farm/long-read-challenges-and-opportunities-for-vertical-farming/  301
-/how-to-set-up-and-sustain-a-microgreens-business-in-2023/  https://ipp.farm/microgreens/how-to-start-a-microgreens-business/  301  # ⚠️  NEW PAGE NEEDED
-/the-who-what-why-of-seed-density/  https://ipp.farm/microgreens/seed-density-for-microgreens/  301  # ⚠️  NEW PAGE NEEDED
+/how-to-set-up-and-sustain-a-microgreens-business-in-2023/  https://ipp.farm/how-to-start-a-microgreens-business/  301  # ⚠️  NEW PAGE NEEDED
+/the-who-what-why-of-seed-density/  https://ipp.farm/seed-density-for-microgreens/  301  # ⚠️  NEW PAGE NEEDED
 /the-use-of-vertical-farming-for-pharmaceutical-plants/  https://ipp.farm/long-read-growing-pharmaceutical-plants-in-vertical-farms/  301
-/should-you-soak-your-seeds/  https://ipp.farm/microgreens/soaking-seeds-for-microgreens/  301  # ⚠️  NEW PAGE NEEDED
+/should-you-soak-your-seeds/  https://ipp.farm/soaking-seeds-before-sowing-microgreens/  301  # ⚠️  NEW PAGE NEEDED
 /how-can-vertical-farming-aid-food-security-during-a-global-food-crisis/  https://ipp.farm/food-security-and-controlled-environment-agriculture-how-can-indoor-plant-production-help-address-food-security/  301
-/how-and-when-to-harvest-microgreens/  https://ipp.farm/microgreens/harvesting-microgreens/  301  # ⚠️  NEW PAGE NEEDED
-/how-to-store-microgreens-after-harvest/  https://ipp.farm/microgreens/storing-microgreens-after-harvest/  301  # ⚠️  NEW PAGE NEEDED
+/how-and-when-to-harvest-microgreens/  https://ipp.farm/harvesting-microgreens/  301  # ⚠️  NEW PAGE NEEDED
+/how-to-store-microgreens-after-harvest/  https://ipp.farm/storing-microgreens-after-harvest/  301  # ⚠️  NEW PAGE NEEDED
 /growing-without-soil-an-overview-of-hydroponics/  https://ipp.farm/hydroponic-and-soilless-growing-methods/  301
-/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/  https://ipp.farm/microgreens/sprouts-and-microgreens-crop-potential/  301  # ⚠️  NEW PAGE NEEDED
-/common-grow-room-fails/  https://ipp.farm/microgreens/common-grow-room-fails/  301  # ⚠️  NEW PAGE NEEDED
-/common-crop-fails-12-tips-to-protect-your-plants/  https://ipp.farm/microgreens/common-crop-fails/  301  # ⚠️  NEW PAGE NEEDED
+/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/  https://ipp.farm/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/  301  # ⚠️  NEW PAGE NEEDED
+/common-grow-room-fails/  https://ipp.farm/common-grow-room-fails/  301  # ⚠️  NEW PAGE NEEDED
+/common-crop-fails-12-tips-to-protect-your-plants/  https://ipp.farm/common-crop-fails-12-tips-to-protect-your-plants/  301  # ⚠️  NEW PAGE NEEDED
 /vertical-farming-a-new-future-for-food-production/  https://ipp.farm/vertical-farming-and-controlled-environment-agriculture-a-historical-and-future-perspective/  301
 /aquaponics-current-state-and-prospectives/  https://ipp.farm/what-is-aquaponics/  301
 /starter-tips-definitions-and-explanations/  https://ipp.farm/definitions-and-glossary-of-terms-for-controlled-environment-agriculture-cea-and-vertical-farming/  301
@@ -107,6 +107,9 @@
 /ask-the-experts/  /contact/  301
 /microgreens-starter-kit/  https://ipp.farm/microgreens/  301  # ⚠️  NEW PAGE NEEDED
 /microgreen-seed-supplier/  https://ipp.farm/microgreens/  301  # ⚠️  NEW PAGE NEEDED
+# ─── LEGACY PATHS FROM WORDPRESS REDIRECT LOG ────────────────────────────────
+/98-2/  /  301
+/growing-environment-products/air-handling/*  https://ipp.farm/managing-temperature-humidity-and-co2-in-cea/  301
 /product-category/grow-lights/*  https://ipp.farm/overview-of-artificial-lighting-in-cea/  301
 /product-category/racking-benches-trays/*  https://ipp.farm/benefits-of-vertical-rack-systems-in-cea/  301
 /product-category/hydroponics-irrigation/*  https://ipp.farm/hydroponic-and-soilless-growing-methods/  301
