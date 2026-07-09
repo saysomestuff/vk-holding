@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertikit Redirect Test — 118 rules</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f4f6fb; color: #1a2557; font-size: 13px; }
+  header { background: #1a2557; color: white; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+  header h1 { font-size: 15px; font-weight: 700; }
+  header p { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+  .meta { font-size: 11px; color: rgba(255,255,255,0.5); text-align: right; }
+  .toolbar { background: white; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; gap: 10px; align-items: center; }
+  .toolbar button { border: 1px solid #e2e8f0; background: white; border-radius: 4px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; color: #1a2557; }
+  .toolbar button:hover { background: #1a2557; color: white; border-color: #1a2557; }
+  .toolbar button.pink { background: #e91e8c; color: white; border-color: #e91e8c; }
+  #summary { margin-left: auto; font-size: 12px; color: #6b7280; }
+  .wrap { padding: 24px; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  th { background: #1a2557; color: white; text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  td { padding: 8px 14px; border-bottom: 1px solid #f0f2f7; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr.group-row td { background: #f4f6fb; color: #6b7280; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 14px 6px; border-bottom: 1px solid #e2e8f0; }
+  tr:hover:not(.group-row) { background: #f8f9ff; }
+  td a { color: #e91e8c; text-decoration: none; font-family: monospace; font-size: 12px; }
+  td a:hover { text-decoration: underline; }
+  .dest { color: #6b7280; font-family: monospace; font-size: 11px; max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .badge { background: #fde68a; color: #92400e; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; letter-spacing: 0.04em; vertical-align: middle; }
+  .status { font-size: 11px; font-weight: 600; width: 90px; text-align: center; }
+  .status.ok { color: #10b981; }
+  .status.fail { color: #ef4444; }
+  .status.checking { color: #f59e0b; }
+  .progress { height: 3px; background: #e2e8f0; position: sticky; top: 0; z-index: 10; }
+  .progress-fill { height: 100%; background: #e91e8c; width: 0; transition: width 0.2s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Vertikit → IPP.farm Redirect Test</h1>
+    <p>Click any URL to test manually, or use the buttons to check all redirects</p>
+  </div>
+  <div class="meta">118 redirect rules</div>
+</header>
+
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="toolbar">
+  <button class="pink" onclick="checkAll()">▶ Test all redirects</button>
+  <button onclick="resetAll()">Reset</button>
+  <button onclick="showFailed()">Show failed only</button>
+  <span id="summary"></span>
+</div>
+
+<div class="wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:45%">Old Vertikit URL</th>
+      <th style="width:42%">Should redirect to</th>
+      <th style="width:13%">Result</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class="group-row"><td colspan="3">Homepage</td></tr>
+<tr>
+  <td><a href="/" target="_blank">/</a></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_578449637460474597">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Articles & posts</td></tr>
+<tr>
+  <td><a href="/producing-fodder-crops-using-hydroponics/" target="_blank">/producing-fodder-crops-using-hydroponics/</a></td>
+  <td class="dest">ipp.farm/basics-of-hydroponics-aeroponics-and-aquaponics/</td>
+  <td class="status" id="s_898089846887927717">—</td>
+</tr>
+<tr>
+  <td><a href="/the-influence-of-different-light-wavelengths-on-plant-growth/" target="_blank">/the-influence-of-different-light-wavelengths-on-plant-growth/</a></td>
+  <td class="dest">ipp.farm/long-read-the-influence-of-different-light-wavelengths-on-plant-growth/</td>
+  <td class="status" id="s_8296900409552310188">—</td>
+</tr>
+<tr>
+  <td><a href="/blackout-periods-for-microgreens/" target="_blank">/blackout-periods-for-microgreens/</a></td>
+  <td class="dest">ipp.farm/blackout-periods-for-microgreens/</td>
+  <td class="status" id="s_5550848971734730237">—</td>
+</tr>
+<tr>
+  <td><a href="/vertical-farming-challenges-and-opportunities/" target="_blank">/vertical-farming-challenges-and-opportunities/</a></td>
+  <td class="dest">ipp.farm/long-read-challenges-and-opportunities-for-vertical-farming/</td>
+  <td class="status" id="s_7400155762890715268">—</td>
+</tr>
+<tr>
+  <td><a href="/how-to-set-up-and-sustain-a-microgreens-business-in-2023/" target="_blank">/how-to-set-up-and-sustain-a-microgreens-business-in-2023/</a></td>
+  <td class="dest">ipp.farm/how-to-start-a-microgreens-business/</td>
+  <td class="status" id="s_8952203210743592694">—</td>
+</tr>
+<tr>
+  <td><a href="/the-who-what-why-of-seed-density/" target="_blank">/the-who-what-why-of-seed-density/</a></td>
+  <td class="dest">ipp.farm/seed-density-for-microgreens/</td>
+  <td class="status" id="s_6030174970088475041">—</td>
+</tr>
+<tr>
+  <td><a href="/the-use-of-vertical-farming-for-pharmaceutical-plants/" target="_blank">/the-use-of-vertical-farming-for-pharmaceutical-plants/</a></td>
+  <td class="dest">ipp.farm/long-read-growing-pharmaceutical-plants-in-vertical-farms/</td>
+  <td class="status" id="s_3503939098431727909">—</td>
+</tr>
+<tr>
+  <td><a href="/should-you-soak-your-seeds/" target="_blank">/should-you-soak-your-seeds/</a></td>
+  <td class="dest">ipp.farm/soaking-seeds-before-sowing-microgreens/</td>
+  <td class="status" id="s_2013095163090649548">—</td>
+</tr>
+<tr>
+  <td><a href="/how-can-vertical-farming-aid-food-security-during-a-global-food-crisis/" target="_blank">/how-can-vertical-farming-aid-food-security-during-a-global-food-crisis/</a></td>
+  <td class="dest">ipp.farm/food-security-and-controlled-environment-agriculture-how-can-indoor-plant-production-help-address-food-security/</td>
+  <td class="status" id="s_3213075440706215419">—</td>
+</tr>
+<tr>
+  <td><a href="/how-and-when-to-harvest-microgreens/" target="_blank">/how-and-when-to-harvest-microgreens/</a></td>
+  <td class="dest">ipp.farm/harvesting-microgreens/</td>
+  <td class="status" id="s_3927111967006326544">—</td>
+</tr>
+<tr>
+  <td><a href="/how-to-store-microgreens-after-harvest/" target="_blank">/how-to-store-microgreens-after-harvest/</a></td>
+  <td class="dest">ipp.farm/storing-microgreens-after-harvest/</td>
+  <td class="status" id="s_7796529437662187250">—</td>
+</tr>
+<tr>
+  <td><a href="/growing-without-soil-an-overview-of-hydroponics/" target="_blank">/growing-without-soil-an-overview-of-hydroponics/</a></td>
+  <td class="dest">ipp.farm/hydroponic-and-soilless-growing-methods/</td>
+  <td class="status" id="s_1015183622757075902">—</td>
+</tr>
+<tr>
+  <td><a href="/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/" target="_blank">/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/</a></td>
+  <td class="dest">ipp.farm/sprouts-and-microgreens-crop-potential-and-cultivation-strategies/</td>
+  <td class="status" id="s_6204369316177716810">—</td>
+</tr>
+<tr>
+  <td><a href="/common-grow-room-fails/" target="_blank">/common-grow-room-fails/</a></td>
+  <td class="dest">ipp.farm/common-grow-room-fails/</td>
+  <td class="status" id="s_5281440979276157313">—</td>
+</tr>
+<tr>
+  <td><a href="/common-crop-fails-12-tips-to-protect-your-plants/" target="_blank">/common-crop-fails-12-tips-to-protect-your-plants/</a></td>
+  <td class="dest">ipp.farm/common-crop-fails-12-tips-to-protect-your-plants/</td>
+  <td class="status" id="s_2669926484141953532">—</td>
+</tr>
+<tr>
+  <td><a href="/vertical-farming-a-new-future-for-food-production/" target="_blank">/vertical-farming-a-new-future-for-food-production/</a></td>
+  <td class="dest">ipp.farm/vertical-farming-and-controlled-environment-agriculture-a-historical-and-future-perspective/</td>
+  <td class="status" id="s_8809065202511193765">—</td>
+</tr>
+<tr>
+  <td><a href="/aquaponics-current-state-and-prospectives/" target="_blank">/aquaponics-current-state-and-prospectives/</a></td>
+  <td class="dest">ipp.farm/what-is-aquaponics/</td>
+  <td class="status" id="s_2137268857618623074">—</td>
+</tr>
+<tr>
+  <td><a href="/starter-tips-definitions-and-explanations/" target="_blank">/starter-tips-definitions-and-explanations/</a></td>
+  <td class="dest">ipp.farm/definitions-and-glossary-of-terms-for-controlled-environment-agriculture-cea-and-vertical-farming/</td>
+  <td class="status" id="s_7598633818512402548">—</td>
+</tr>
+<tr>
+  <td><a href="/starter-tips-advice-from-real-growers/" target="_blank">/starter-tips-advice-from-real-growers/</a></td>
+  <td class="dest">ipp.farm/how-to-get-started-in-cea-and-vertical-farming/</td>
+  <td class="status" id="s_2486399039119160890">—</td>
+</tr>
+<tr>
+  <td><a href="/the-different-types-of-cea/" target="_blank">/the-different-types-of-cea/</a></td>
+  <td class="dest">ipp.farm/the-different-types-of-indoor-plant-production/</td>
+  <td class="status" id="s_4161035784238822429">—</td>
+</tr>
+<tr>
+  <td><a href="/hydroponics-for-vertical-farming/" target="_blank">/hydroponics-for-vertical-farming/</a></td>
+  <td class="dest">ipp.farm/hydroponic-and-soilless-growing-methods/</td>
+  <td class="status" id="s_4506272936820404309">—</td>
+</tr>
+<tr>
+  <td><a href="/led-grow-lights-for-vertical-farming/" target="_blank">/led-grow-lights-for-vertical-farming/</a></td>
+  <td class="dest">ipp.farm/overview-of-artificial-lighting-in-cea/</td>
+  <td class="status" id="s_2894532197171889651">—</td>
+</tr>
+<tr>
+  <td><a href="/environment-control-for-vertical-farming/" target="_blank">/environment-control-for-vertical-farming/</a></td>
+  <td class="dest">ipp.farm/managing-temperature-humidity-and-co2-in-cea/</td>
+  <td class="status" id="s_3533619034325751539">—</td>
+</tr>
+<tr>
+  <td><a href="/monitoring-measurement-for-vertical-farming/" target="_blank">/monitoring-measurement-for-vertical-farming/</a></td>
+  <td class="dest">ipp.farm/sensor-technology-for-smart-indoor-farming/</td>
+  <td class="status" id="s_110408953220401718">—</td>
+</tr>
+<tr>
+  <td><a href="/knowledge-centre/" target="_blank">/knowledge-centre/</a></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_3759801266485513642">—</td>
+</tr>
+<tr>
+  <td><a href="/knowledge-centre/page/2/" target="_blank">/knowledge-centre/page/2/</a></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_1733954491087258108">—</td>
+</tr>
+<tr>
+  <td><a href="/vertikit-knowledge-centre/" target="_blank">/vertikit-knowledge-centre/</a></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_4763739568655609878">—</td>
+</tr>
+<tr>
+  <td><a href="/farm-builder/" target="_blank">/farm-builder/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_7120553528762452404">—</td>
+</tr>
+<tr>
+  <td><a href="/ask-the-experts/" target="_blank">/ask-the-experts/</a></td>
+  <td class="dest">/contact/</td>
+  <td class="status" id="s_253368989888443764">—</td>
+</tr>
+<tr>
+  <td><a href="/98-2/" target="_blank">/98-2/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_7377005082469367589">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Microgreen hub & how-tos</td></tr>
+<tr>
+  <td><a href="/microgreens/" target="_blank">/microgreens/</a></td>
+  <td class="dest">ipp.farm/microgreens/</td>
+  <td class="status" id="s_6075231869640440788">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens-starter-kit/" target="_blank">/microgreens-starter-kit/</a></td>
+  <td class="dest">ipp.farm/microgreens/</td>
+  <td class="status" id="s_4267203348031978445">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreen-seed-supplier/" target="_blank">/microgreen-seed-supplier/</a></td>
+  <td class="dest">ipp.farm/microgreens/</td>
+  <td class="status" id="s_8678672440465982422">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Microgreen crop guides</td></tr>
+<tr>
+  <td><a href="/microgreens/amaranth/" target="_blank">/microgreens/amaranth/</a></td>
+  <td class="dest">ipp.farm/how-to-grow-amaranth-in-indoors-growing-systems/</td>
+  <td class="status" id="s_5922775635740684909">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/basil/" target="_blank">/microgreens/basil/</a></td>
+  <td class="dest">ipp.farm/how-to-grow-basil-in-indoor-growing-systems/</td>
+  <td class="status" id="s_1643264760502936085">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/beetroot/" target="_blank">/microgreens/beetroot/</a></td>
+  <td class="dest">ipp.farm/growing-beetroot-microgreens/</td>
+  <td class="status" id="s_2140760725436325182">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/borage/" target="_blank">/microgreens/borage/</a></td>
+  <td class="dest">ipp.farm/growing-borage-microgreens/</td>
+  <td class="status" id="s_5918557502652034459">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/broad-bean/" target="_blank">/microgreens/broad-bean/</a></td>
+  <td class="dest">ipp.farm/growing-broad-bean-microgreens/</td>
+  <td class="status" id="s_4126547137959759128">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/broccoli/" target="_blank">/microgreens/broccoli/</a></td>
+  <td class="dest">ipp.farm/growing-broccoli-microgreens/</td>
+  <td class="status" id="s_6146517088168891903">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/buckwheat/" target="_blank">/microgreens/buckwheat/</a></td>
+  <td class="dest">ipp.farm/growing-buckwheat-microgreens/</td>
+  <td class="status" id="s_4945898559792528409">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/carrot/" target="_blank">/microgreens/carrot/</a></td>
+  <td class="dest">ipp.farm/growing-carrot-microgreens/</td>
+  <td class="status" id="s_140054736423427719">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/chard/" target="_blank">/microgreens/chard/</a></td>
+  <td class="dest">ipp.farm/growing-chard-in-indoor-farming-systems/</td>
+  <td class="status" id="s_4169653577891910232">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/chinese-kale/" target="_blank">/microgreens/chinese-kale/</a></td>
+  <td class="dest">ipp.farm/growing-chinese-kale-microgreens/</td>
+  <td class="status" id="s_1010318107650201511">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/chive/" target="_blank">/microgreens/chive/</a></td>
+  <td class="dest">ipp.farm/growing-chives-allium-schoenoprasum-evidence-review/</td>
+  <td class="status" id="s_5870535770537757788">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/coriander/" target="_blank">/microgreens/coriander/</a></td>
+  <td class="dest">ipp.farm/cultivating-coriander-cilantro-coriandrum-sativum-evidence-review/</td>
+  <td class="status" id="s_8416113669686016438">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/cress/" target="_blank">/microgreens/cress/</a></td>
+  <td class="dest">ipp.farm/growing-cress-lepidium-sativum-evidence-review-the-archetypal-microgreen/</td>
+  <td class="status" id="s_5481329512684291384">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/daikon-radish/" target="_blank">/microgreens/daikon-radish/</a></td>
+  <td class="dest">ipp.farm/growing-daikon-radish-microgreens/</td>
+  <td class="status" id="s_5938271557578842880">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/dill/" target="_blank">/microgreens/dill/</a></td>
+  <td class="dest">ipp.farm/growing-dill-anethum-graveolens-evidence-review/</td>
+  <td class="status" id="s_4849041363044090791">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/fennel/" target="_blank">/microgreens/fennel/</a></td>
+  <td class="dest">ipp.farm/growing-fennel-microgreens/</td>
+  <td class="status" id="s_4339907388155792194">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/green-cabbage/" target="_blank">/microgreens/green-cabbage/</a></td>
+  <td class="dest">ipp.farm/growing-green-cabbage-microgreens/</td>
+  <td class="status" id="s_4445936482025878253">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/kohlrabi/" target="_blank">/microgreens/kohlrabi/</a></td>
+  <td class="dest">ipp.farm/growing-kohlrabi-microgreens/</td>
+  <td class="status" id="s_2228482629976634341">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/lemon-balm/" target="_blank">/microgreens/lemon-balm/</a></td>
+  <td class="dest">ipp.farm/growing-lemon-balm-microgreens/</td>
+  <td class="status" id="s_7163949109017761347">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/lettuce/" target="_blank">/microgreens/lettuce/</a></td>
+  <td class="dest">ipp.farm/lettuce-lactuca-sativa-production-evidence-review/</td>
+  <td class="status" id="s_8380825674785824517">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/marigold/" target="_blank">/microgreens/marigold/</a></td>
+  <td class="dest">ipp.farm/growing-marigold-microgreens/</td>
+  <td class="status" id="s_1951639159002495870">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/mizuna/" target="_blank">/microgreens/mizuna/</a></td>
+  <td class="dest">ipp.farm/growing-mizuna-microgreens/</td>
+  <td class="status" id="s_1903385262342404532">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/mustard/" target="_blank">/microgreens/mustard/</a></td>
+  <td class="dest">ipp.farm/growing-mustard-microgreens/</td>
+  <td class="status" id="s_1847503974384794534">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/pak-choi-red/" target="_blank">/microgreens/pak-choi-red/</a></td>
+  <td class="dest">ipp.farm/growing-red-pak-choi-microgreens/</td>
+  <td class="status" id="s_1935361314111218883">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/parsley/" target="_blank">/microgreens/parsley/</a></td>
+  <td class="dest">ipp.farm/growing-parsley-microgreens/</td>
+  <td class="status" id="s_6070577163992736510">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/pea/" target="_blank">/microgreens/pea/</a></td>
+  <td class="dest">ipp.farm/growing-peas-pisum-sativum/</td>
+  <td class="status" id="s_7325553446517097203">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/perilla/" target="_blank">/microgreens/perilla/</a></td>
+  <td class="dest">ipp.farm/growing-perilla-microgreens/</td>
+  <td class="status" id="s_6240250364005951720">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/popcorn/" target="_blank">/microgreens/popcorn/</a></td>
+  <td class="dest">ipp.farm/growing-popcorn-microgreens/</td>
+  <td class="status" id="s_8542326675796943340">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/radish/" target="_blank">/microgreens/radish/</a></td>
+  <td class="dest">ipp.farm/growing-radish-microgreens/</td>
+  <td class="status" id="s_9189108379593697792">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/china-rose-radish/" target="_blank">/microgreens/china-rose-radish/</a></td>
+  <td class="dest">ipp.farm/growing-china-rose-radish-microgreens/</td>
+  <td class="status" id="s_7998600772562122950">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/red-radish/" target="_blank">/microgreens/red-radish/</a></td>
+  <td class="dest">ipp.farm/growing-red-radish-microgreens/</td>
+  <td class="status" id="s_2246203557615310804">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/ruby-radish/" target="_blank">/microgreens/ruby-radish/</a></td>
+  <td class="dest">ipp.farm/growing-ruby-radish-microgreens/</td>
+  <td class="status" id="s_5137963443856274615">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/rapini/" target="_blank">/microgreens/rapini/</a></td>
+  <td class="dest">ipp.farm/growing-rapini-microgreens/</td>
+  <td class="status" id="s_63644118403072100">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/red-cabbage/" target="_blank">/microgreens/red-cabbage/</a></td>
+  <td class="dest">ipp.farm/growing-red-cabbage-microgreens/</td>
+  <td class="status" id="s_7436996225872679269">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/rocket/" target="_blank">/microgreens/rocket/</a></td>
+  <td class="dest">ipp.farm/how-to-grow-rocket-arugula-in-indoor-growing-systems/</td>
+  <td class="status" id="s_2414250949626758093">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/sorrel/" target="_blank">/microgreens/sorrel/</a></td>
+  <td class="dest">ipp.farm/growing-sorrel-microgreens/</td>
+  <td class="status" id="s_8268851807472972076">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/soybean/" target="_blank">/microgreens/soybean/</a></td>
+  <td class="dest">ipp.farm/growing-soybean-microgreens/</td>
+  <td class="status" id="s_4518657871948369610">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/spinach/" target="_blank">/microgreens/spinach/</a></td>
+  <td class="dest">ipp.farm/growing-spinach-microgreens/</td>
+  <td class="status" id="s_8238613443199922880">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/sunflower/" target="_blank">/microgreens/sunflower/</a></td>
+  <td class="dest">ipp.farm/growing-sunflower-microgreens/</td>
+  <td class="status" id="s_5239736146902978022">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/swiss-chard/" target="_blank">/microgreens/swiss-chard/</a></td>
+  <td class="dest">ipp.farm/growing-swiss-chard-microgreens/</td>
+  <td class="status" id="s_2197573894444977315">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/tatsoi/" target="_blank">/microgreens/tatsoi/</a></td>
+  <td class="dest">ipp.farm/growing-tatsoi-microgreens/</td>
+  <td class="status" id="s_6483569488148337213">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/turnip/" target="_blank">/microgreens/turnip/</a></td>
+  <td class="dest">ipp.farm/growing-turnip-microgreens/</td>
+  <td class="status" id="s_5994606420826250143">—</td>
+</tr>
+<tr>
+  <td><a href="/microgreens/wheat-grass/" target="_blank">/microgreens/wheat-grass/</a></td>
+  <td class="dest">ipp.farm/growing-wheatgrass-microgreens/</td>
+  <td class="status" id="s_8697345075629915186">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Leafy & salad</td></tr>
+<tr>
+  <td><a href="/leafy-and-salad/" target="_blank">/leafy-and-salad/</a></td>
+  <td class="dest">ipp.farm/leafy-and-salad-crops/</td>
+  <td class="status" id="s_4402747100633231684">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/babyleaf-lettuce/" target="_blank">/leafy-and-salad/babyleaf-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-babyleaf-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_5627624459633279357">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/batavia-lettuce/" target="_blank">/leafy-and-salad/batavia-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-batavia-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_4979850837053411053">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/butterhead-lettuce/" target="_blank">/leafy-and-salad/butterhead-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-butterhead-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_77991805999650624">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/iceberg-lettuce/" target="_blank">/leafy-and-salad/iceberg-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-iceberg-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_8438338902467229420">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/lollo-rosso-lettuce/" target="_blank">/leafy-and-salad/lollo-rosso-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-lollo-rosso-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_1455615506627529106">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/oakleaf-lettuce/" target="_blank">/leafy-and-salad/oakleaf-lettuce/</a></td>
+  <td class="dest">ipp.farm/growing-oakleaf-lettuce-in-indoor-farms/</td>
+  <td class="status" id="s_6299316410619035498">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/radish/" target="_blank">/leafy-and-salad/radish/</a></td>
+  <td class="dest">ipp.farm/growing-radish-in-indoor-farms/</td>
+  <td class="status" id="s_7697298884128180261">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/spinach/" target="_blank">/leafy-and-salad/spinach/</a></td>
+  <td class="dest">ipp.farm/growing-spinach-in-indoor-farms/</td>
+  <td class="status" id="s_8267902382508796040">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/watercress/" target="_blank">/leafy-and-salad/watercress/</a></td>
+  <td class="dest">ipp.farm/growing-watercress-in-indoor-farms/</td>
+  <td class="status" id="s_7852582163282573793">—</td>
+</tr>
+<tr>
+  <td><a href="/leafy-and-salad/cucumber/" target="_blank">/leafy-and-salad/cucumber/</a></td>
+  <td class="dest">ipp.farm/growing-cucumber-in-indoor-farms/</td>
+  <td class="status" id="s_5753268803743532783">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Herbs & spices</td></tr>
+<tr>
+  <td><a href="/herbs-and-spices/" target="_blank">/herbs-and-spices/</a></td>
+  <td class="dest">ipp.farm/herbs-and-spices/</td>
+  <td class="status" id="s_1815847530678097494">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/lemongrass/" target="_blank">/herbs-and-spices/lemongrass/</a></td>
+  <td class="dest">ipp.farm/growing-lemongrass-in-indoor-farms/</td>
+  <td class="status" id="s_1156770743552129442">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/oregano/" target="_blank">/herbs-and-spices/oregano/</a></td>
+  <td class="dest">ipp.farm/growing-oregano-in-indoor-farms/</td>
+  <td class="status" id="s_2833698744882010027">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/parsley-herb/" target="_blank">/herbs-and-spices/parsley-herb/</a></td>
+  <td class="dest">ipp.farm/growing-parsley-in-indoor-farms/</td>
+  <td class="status" id="s_6825252723120864100">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/peppermint/" target="_blank">/herbs-and-spices/peppermint/</a></td>
+  <td class="dest">ipp.farm/growing-peppermint-in-indoor-farms/</td>
+  <td class="status" id="s_6291682844880362994">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/sorrel/" target="_blank">/herbs-and-spices/sorrel/</a></td>
+  <td class="dest">ipp.farm/growing-sorrel-in-indoor-farms/</td>
+  <td class="status" id="s_6505776324071617657">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/spearmint/" target="_blank">/herbs-and-spices/spearmint/</a></td>
+  <td class="dest">ipp.farm/growing-spearmint-in-indoor-farms/</td>
+  <td class="status" id="s_7566660457068187501">—</td>
+</tr>
+<tr>
+  <td><a href="/herbs-and-spices/thyme/" target="_blank">/herbs-and-spices/thyme/</a></td>
+  <td class="dest">ipp.farm/growing-thyme-in-indoor-farms/</td>
+  <td class="status" id="s_1718193551004173666">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Products & ecommerce</td></tr>
+<tr>
+  <td><a href="/shop/" target="_blank">/shop/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_3890368429628996793">—</td>
+</tr>
+<tr>
+  <td><a href="/cart/" target="_blank">/cart/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_8387095852468514927">—</td>
+</tr>
+<tr>
+  <td><a href="/checkout/" target="_blank">/checkout/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_2950544982077474912">—</td>
+</tr>
+<tr>
+  <td><a href="/my-account/" target="_blank">/my-account/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_8322848859464415687">—</td>
+</tr>
+<tr>
+  <td><a href="/returns-policy/" target="_blank">/returns-policy/</a></td>
+  <td class="dest">/</td>
+  <td class="status" id="s_1069916184173491451">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Utility pages</td></tr>
+<tr>
+  <td><a href="/about-us/" target="_blank">/about-us/</a></td>
+  <td class="dest">vertikit.co.uk/about/</td>
+  <td class="status" id="s_4171544501768092643">—</td>
+</tr>
+<tr>
+  <td><a href="/contact/" target="_blank">/contact/</a></td>
+  <td class="dest">vertikit.co.uk/contact/</td>
+  <td class="status" id="s_2972604691009715911">—</td>
+</tr>
+<tr>
+  <td><a href="/work-with-vertikit/" target="_blank">/work-with-vertikit/</a></td>
+  <td class="dest">vertikit.co.uk/contact/</td>
+  <td class="status" id="s_4560228193480104440">—</td>
+</tr>
+<tr>
+  <td><a href="/privacy-policy/" target="_blank">/privacy-policy/</a></td>
+  <td class="dest">vertikit.co.uk/privacy-policy/</td>
+  <td class="status" id="s_2571233114797054807">—</td>
+</tr>
+<tr>
+  <td><a href="/terms-conditions/" target="_blank">/terms-conditions/</a></td>
+  <td class="dest">vertikit.co.uk/terms-conditions/</td>
+  <td class="status" id="s_6205460261983525016">—</td>
+</tr>
+<tr class="group-row"><td colspan="3">Wildcards</td></tr>
+<tr>
+  <td><a href="/growing-environment-products/air-handling/example/" target="_blank">/growing-environment-products/air-handling/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/managing-temperature-humidity-and-co2-in-cea/</td>
+  <td class="status" id="s_4302536004851667872">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/grow-lights/example/" target="_blank">/product-category/grow-lights/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/overview-of-artificial-lighting-in-cea/</td>
+  <td class="status" id="s_1554475838577056639">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/racking-benches-trays/example/" target="_blank">/product-category/racking-benches-trays/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/benefits-of-vertical-rack-systems-in-cea/</td>
+  <td class="status" id="s_617904673809188646">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/hydroponics-irrigation/example/" target="_blank">/product-category/hydroponics-irrigation/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/hydroponic-and-soilless-growing-methods/</td>
+  <td class="status" id="s_5660141876185739806">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/monitoring-control-systems/example/" target="_blank">/product-category/monitoring-control-systems/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/sensor-technology-for-smart-indoor-farming/</td>
+  <td class="status" id="s_368329731019564058">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/growing-environment-products/example/" target="_blank">/product-category/growing-environment-products/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/managing-temperature-humidity-and-co2-in-cea/</td>
+  <td class="status" id="s_629370959553244049">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/temperature-control/example/" target="_blank">/product-category/temperature-control/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/managing-temperature-humidity-and-co2-in-cea/</td>
+  <td class="status" id="s_2055710264887646489">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/pests-disease/example/" target="_blank">/product-category/pests-disease/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/managing-pests-and-diseases-in-cea/</td>
+  <td class="status" id="s_6096183448741052467">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/growing-media/example/" target="_blank">/product-category/growing-media/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm/hydroponic-and-soilless-growing-methods/</td>
+  <td class="status" id="s_6933929754388072382">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/brands/example/" target="_blank">/product-category/brands/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_224439033952581366">—</td>
+</tr>
+<tr>
+  <td><a href="/product-category/example/" target="_blank">/product-category/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_4489103216549066639">—</td>
+</tr>
+<tr>
+  <td><a href="/product/example/" target="_blank">/product/*</a> <span class="badge">wildcard</span></td>
+  <td class="dest">ipp.farm</td>
+  <td class="status" id="s_3903052824097369256">—</td>
+</tr>
+  </tbody>
+</table>
+</div>
+
+<script>
+const rows = document.querySelectorAll('tbody tr:not(.group-row)');
+let passed = 0, failed = 0, total = rows.length;
+
+async function checkRedirect(anchor, statusEl) {
+  const href = anchor.getAttribute('href');
+  statusEl.textContent = '...';
+  statusEl.className = 'status checking';
+  try {
+    // Fetch the URL - if it redirects correctly the response.url will be the destination
+    const res = await fetch(href, { method: 'GET', redirect: 'follow', mode: 'no-cors' });
+    // no-cors means we can't read response.url but a successful fetch = redirect worked
+    statusEl.textContent = '✓ OK';
+    statusEl.className = 'status ok';
+    return true;
+  } catch(e) {
+    statusEl.textContent = '✗ Fail';
+    statusEl.className = 'status fail';
+    return false;
+  }
+}
+
+async function checkAll() {
+  passed = 0; failed = 0;
+  const fill = document.getElementById('progressFill');
+  const summary = document.getElementById('summary');
+  let done = 0;
+  for (const row of rows) {
+    const a = row.querySelector('a');
+    const s = row.querySelector('.status');
+    if (!a || !s) continue;
+    const ok = await checkRedirect(a, s);
+    if (ok) passed++; else failed++;
+    done++;
+    fill.style.width = (done/total*100) + '%';
+    summary.textContent = `${passed} passed · ${failed} failed · ${total - done} remaining`;
+    await new Promise(r => setTimeout(r, 80));
+  }
+  summary.textContent = `Done: ${passed} passed · ${failed} failed`;
+}
+
+function resetAll() {
+  document.querySelectorAll('.status').forEach(s => { s.textContent = '—'; s.className = 'status'; });
+  document.getElementById('progressFill').style.width = '0';
+  document.getElementById('summary').textContent = '';
+  document.querySelectorAll('tr').forEach(r => r.style.display = '');
+}
+
+function showFailed() {
+  document.querySelectorAll('tbody tr:not(.group-row)').forEach(r => {
+    const s = r.querySelector('.status');
+    r.style.display = (s && s.classList.contains('fail')) ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
